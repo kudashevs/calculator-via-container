@@ -1,0 +1,35 @@
+<?php
+
+namespace CalculatorViaContainer\Operations;
+
+use CalculatorViaContainer\Exceptions\InvalidOperationArgument;
+use CalculatorViaContainer\Validators\Validator;
+
+abstract class Operation
+{
+    protected Validator $validator;
+
+    public function __construct(Validator $validator)
+    {
+        $this->validator = $validator;
+    }
+
+    /**
+     * @param ...$numbers
+     * @return int|float
+     */
+    abstract protected function performCalculation(...$numbers);
+
+    /**
+     * @param int|float ...$numbers
+     * @return float|int
+     *
+     * @throws InvalidOperationArgument|\InvalidArgumentException
+     */
+    final public function calculate(...$numbers)
+    {
+        $this->validator->validate(...$numbers);
+
+        return $this->performCalculation(...$numbers);
+    }
+}
