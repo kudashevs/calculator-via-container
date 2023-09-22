@@ -1,0 +1,33 @@
+{
+    "name": "kudashevs/calculator-via-locator",
+    "description": "A simple calculator app that implements math operations via a container.",
+    "keywords": ["php", "study", "case study", "calculator", "closure"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Serge Kudashev",
+            "email": "kudashevs@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^7.4|^8.0",
+        "psr/container": "^2.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^8.0|^9.0|^10.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "CalculatorViaContainer\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "CalculatorViaContainer\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit --no-coverage",
+        "test-coverage": "vendor/bin/phpunit --coverage-html build/coverage"
+    }
+}
