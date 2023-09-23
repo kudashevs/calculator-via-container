@@ -4,6 +4,7 @@ namespace CalculatorViaContainer\Tests\Operations;
 
 use CalculatorViaContainer\Exceptions\InvalidOperationArgument;
 use CalculatorViaContainer\Operations\Division;
+use CalculatorViaContainer\Validators\DivisionValidator;
 use CalculatorViaContainer\Validators\Validator;
 use PHPUnit\Framework\TestCase;
 
@@ -25,11 +26,8 @@ class DivisionTest extends TestCase
         $this->expectException(InvalidOperationArgument::class);
         $this->expectExceptionMessage('divide by');
 
-        $validatorMock = $this->createValidatorWithException(
-            new InvalidOperationArgument('divide by zero attempt')
-        );
-
-        $division = new Division($validatorMock);
+        $validator = new DivisionValidator();
+        $division = new Division($validator);
         $division->calculate(42, 2, 0);
     }
 
@@ -39,11 +37,8 @@ class DivisionTest extends TestCase
         $this->expectException(InvalidOperationArgument::class);
         $this->expectExceptionMessage('divide by');
 
-        $validatorMock = $this->createValidatorWithException(
-            new InvalidOperationArgument('divide by zero attempt')
-        );
-
-        $division = new Division($validatorMock);
+        $validator = new DivisionValidator();
+        $division = new Division($validator);
         $division->calculate(42, 2.0, 0.0);
     }
 
@@ -100,15 +95,5 @@ class DivisionTest extends TestCase
                 0.4,
             ],
         ];
-    }
-
-    private function createValidatorWithException($exception): Validator
-    {
-        $validatorMock = $this->createMock(Validator::class);
-        $validatorMock->expects($this->once())
-            ->method('validate')
-            ->willThrowException($exception);
-
-        return $validatorMock;
     }
 }
