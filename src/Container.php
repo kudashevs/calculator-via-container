@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace CalculatorViaContainer;
 
+use CalculatorViaContainer\Exceptions\EntryAlreadyExists;
 use CalculatorViaContainer\Exceptions\EntryNotFound;
 use Psr\Container\ContainerInterface;
 
@@ -11,7 +12,15 @@ final class Container implements ContainerInterface
 {
     private static ?Container $instance = null;
 
+    /**
+     * @var callable[]
+     */
     private array $registered = [];
+
+    /**
+     * @var string[][]
+     */
+    private array $aliases = [];
 
     public static function getInstance(): self
     {
@@ -31,15 +40,61 @@ final class Container implements ContainerInterface
         $this->registered[$id] = $factory;
     }
 
-    public function get(string $id)
+    public function alias(string $alias, string $id): void
     {
-        if (!array_key_exists($id, $this->registered)) {
-            throw new EntryNotFound(
-                sprintf('The requested instance %s was not found.', $id)
+        if ($this->isAlias($alias)) {
+            throw new EntryAlreadyExists(
+                sprintf('The alias "%s" already exists.', $alias)
             );
         }
 
-        return $this->registered[$id]($this);
+        if (!$this->has($id)) {
+            throw new EntryNotFound(
+                sprintf('The identifier "%s" was not found.', $id)
+            );
+        }
+
+        $this->aliases[$id][] = $alias;
+    }
+
+    public function get(string $id)
+    {
+        if (array_key_exists($id, $this->registered)) {
+            return $this->registered[$id]($this);
+        }
+
+        if ($this->isAlias($id)) {
+            $aliasId = $this->getRegisteredByAlias($id);
+            return $this->registered[$aliasId]($this);
+        }
+
+        throw new EntryNotFound(
+            sprintf('The requested identifier "%s" was not found.', $id)
+        );
+    }
+
+    private function isAlias(string $alias): bool
+    {
+        foreach (array_keys($this->aliases) as $key) {
+            if (in_array($alias, $this->aliases[$key])) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private function getRegisteredByAlias(string $alias)
+    {
+        foreach (array_keys($this->aliases) as $key) {
+            if (in_array($alias, $this->aliases[$key])) {
+                return $key;
+            }
+        }
+
+        throw new EntryNotFound(
+            sprintf('The requested alias "%s" was not found.', $alias)
+        );
     }
 
     public function has(string $id): bool
