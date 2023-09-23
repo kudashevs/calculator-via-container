@@ -44,6 +44,6 @@ final class Container implements ContainerInterface
 
     public function has(string $id): bool
     {
-        // TODO: Implement has() method.
+        return array_key_exists($id, $this->registered);
     }
 }

@@ -8,14 +8,20 @@ use PHPUnit\Framework\TestCase;
 
 class ContainerTest extends TestCase
 {
+    private Container $container;
+
+    protected function setUp(): void
+    {
+        $this->container = Container::getInstance();
+    }
+
     /** @test */
     public function it_can_throw_an_exception_when_an_unknown_id()
     {
         $this->expectException(EntryNotFound::class);
         $this->expectExceptionMessage('not found');
 
-        $container = Container::getInstance();
-        $container->get('unknown');
+        $this->container->get('unknown');
     }
 
     /** @test */
@@ -41,5 +47,23 @@ class ContainerTest extends TestCase
         $dependency = $container->get(\stdClass::class);
 
         $this->assertInstanceOf(\stdClass::class, $dependency);
+    }
+
+    /**
+     * @test
+     */
+    public function it_can_check_whether_a_depency_is_registered()
+    {
+        $this->container->set(\stdClass::class, function () {
+            return new \stdClass();
+        });
+
+        $this->assertTrue($this->container->has(\stdClass::class));
+    }
+
+    /** @test */
+    public function it_can_check_whether_a_dependency_is_not_registered()
+    {
+        $this->assertFalse($this->container->has(Container::class));
     }
 }
