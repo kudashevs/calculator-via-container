@@ -13,12 +13,7 @@ class OperationTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->operation = new class(new DefaultValidator()) extends Operation {
-            protected function performCalculation(...$arguments)
-            {
-                throw new \LogicException('The method is not supposed to be used in this test.');
-            }
-        };
+        $this->operation = $this->createOperation();
     }
 
     /** @test */
@@ -37,5 +32,17 @@ class OperationTest extends TestCase
         $this->expectExceptionMessage('numeric');
 
         $this->operation->calculate(42, 'wrong');
+    }
+
+    private function createOperation(): Operation
+    {
+        $validator = new DefaultValidator();
+
+        return new class($validator) extends Operation {
+            protected function performCalculation(...$arguments)
+            {
+                throw new \LogicException('The method is not supposed to be used in this test.');
+            }
+        };
     }
 }
