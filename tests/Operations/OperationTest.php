@@ -9,11 +9,11 @@ use PHPUnit\Framework\TestCase;
 
 class OperationTest extends TestCase
 {
-    private Operation $service;
+    private Operation $operation;
 
     protected function setUp(): void
     {
-        $this->service = new class(new DefaultValidator()) extends Operation {
+        $this->operation = new class(new DefaultValidator()) extends Operation {
             protected function performCalculation(...$arguments)
             {
                 throw new \LogicException('The method is not supposed to be used in this test.');
@@ -27,7 +27,7 @@ class OperationTest extends TestCase
         $this->expectException(InvalidOperationArgument::class);
         $this->expectExceptionMessage('at least');
 
-        $this->service->calculate();
+        $this->operation->calculate();
     }
 
     /** @test */
@@ -36,6 +36,6 @@ class OperationTest extends TestCase
         $this->expectException(InvalidOperationArgument::class);
         $this->expectExceptionMessage('numeric');
 
-        $this->service->calculate(42, 'wrong');
+        $this->operation->calculate(42, 'wrong');
     }
 }
