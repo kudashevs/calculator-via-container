@@ -16,8 +16,7 @@ final class Container implements ContainerInterface
     public static function getInstance(): self
     {
         if (self::$instance === null) {
-            $instance = new self();
-            self::$instance = $instance;
+            self::$instance = new self();
         }
 
         return self::$instance;
