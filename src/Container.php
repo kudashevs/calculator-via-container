@@ -6,6 +6,7 @@ namespace CalculatorViaContainer;
 
 use CalculatorViaContainer\Exceptions\EntryAlreadyExists;
 use CalculatorViaContainer\Exceptions\EntryNotFound;
+use CalculatorViaContainer\Initializers\Initializer;
 use Psr\Container\ContainerInterface;
 
 final class Container implements ContainerInterface
@@ -21,6 +22,17 @@ final class Container implements ContainerInterface
      * @var string[][]
      */
     private array $aliases = [];
+
+    public static function initInstance(Initializer $initializer): self
+    {
+        // When we want to initialize a container,
+        // we also want to reset its previous state
+        $container = new self();
+        $initializer->init($container);
+        self::$instance = $container;
+
+        return self::$instance;
+    }
 
     public static function getInstance(): self
     {

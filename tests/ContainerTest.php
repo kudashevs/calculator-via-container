@@ -5,6 +5,7 @@ namespace CalculatorViaContainer\Tests;
 use CalculatorViaContainer\Container;
 use CalculatorViaContainer\Exceptions\EntryAlreadyExists;
 use CalculatorViaContainer\Exceptions\EntryNotFound;
+use CalculatorViaContainer\Initializers\Initializer;
 use PHPUnit\Framework\TestCase;
 
 class ContainerTest extends TestCase
@@ -52,6 +53,16 @@ class ContainerTest extends TestCase
         $this->expectExceptionMessage('std');
 
         $container->alias('std', \stdClass::class);
+    }
+
+    /** @test */
+    public function it_can_be_initialized()
+    {
+        $initializerMock = $this->createMock(Initializer::class);
+        $initializerMock->expects($this->once())
+            ->method('init');
+
+        Container::initInstance($initializerMock);
     }
 
     /** @test */
