@@ -1,6 +1,6 @@
 <?php
 
-namespace CalculatorViaContainer\Tests;
+namespace CalculatorViaContainer\Tests\Unit;
 
 use CalculatorViaContainer\Container;
 use CalculatorViaContainer\Exceptions\EntryAlreadyExists;

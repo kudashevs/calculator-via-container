@@ -1,6 +1,6 @@
 <?php
 
-namespace CalculatorViaContainer\Tests\Validators;
+namespace CalculatorViaContainer\Tests\Unit\Validators;
 
 use CalculatorViaContainer\Exceptions\InvalidOperationArgument;
 use CalculatorViaContainer\Validators\DivisionValidator;

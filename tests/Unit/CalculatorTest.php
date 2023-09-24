@@ -1,6 +1,6 @@
 <?php
 
-namespace CalculatorViaContainer\Tests;
+namespace CalculatorViaContainer\Tests\Unit;
 
 use CalculatorViaContainer\Calculator;
 use CalculatorViaContainer\Exceptions\InvalidOperationArgument;

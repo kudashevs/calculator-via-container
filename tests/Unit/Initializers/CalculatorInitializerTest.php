@@ -1,6 +1,6 @@
 <?php
 
-namespace CalculatorViaContainer\Tests\Initializers;
+namespace CalculatorViaContainer\Tests\Unit\Initializers;
 
 use CalculatorViaContainer\Container;
 use CalculatorViaContainer\Initializers\CalculatorInitializer;
