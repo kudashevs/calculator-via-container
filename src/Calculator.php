@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace CalculatorViaContainer;
 
 use CalculatorViaContainer\Initializers\CalculatorInitializer;
