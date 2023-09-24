@@ -46,15 +46,15 @@ final class Container implements ContainerInterface
 
     public function alias(string $alias, string $id): void
     {
-        if ($this->isAlias($alias)) {
-            throw new EntryAlreadyExists(
-                sprintf('The alias "%s" already exists.', $alias)
+        if (!$this->isRegistered($id)) {
+            throw new EntryNotFound(
+                sprintf('The identifier "%s" was not found.', $id)
             );
         }
 
-        if (!$this->has($id)) {
-            throw new EntryNotFound(
-                sprintf('The identifier "%s" was not found.', $id)
+        if ($this->isAlias($alias)) {
+            throw new EntryAlreadyExists(
+                sprintf('The alias "%s" already exists.', $alias)
             );
         }
 
@@ -63,7 +63,7 @@ final class Container implements ContainerInterface
 
     public function get(string $id)
     {
-        if (array_key_exists($id, $this->registered)) {
+        if ($this->isRegistered($id)) {
             return $this->registered[$id]($this);
         }
 
@@ -75,6 +75,11 @@ final class Container implements ContainerInterface
         throw new EntryNotFound(
             sprintf('The requested identifier "%s" was not found.', $id)
         );
+    }
+
+    private function isRegistered(string $id): bool
+    {
+        return array_key_exists($id, $this->registered);
     }
 
     private function isAlias(string $alias): bool
