@@ -35,6 +35,10 @@ final class Container implements ContainerInterface
     {
     }
 
+    private function __clone()
+    {
+    }
+
     public function set(string $id, callable $factory): void
     {
         $this->registered[$id] = $factory;
