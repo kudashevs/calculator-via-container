@@ -77,6 +77,11 @@ final class Container implements ContainerInterface
         );
     }
 
+    public function has(string $id): bool
+    {
+        return array_key_exists($id, $this->registered);
+    }
+
     private function isRegistered(string $id): bool
     {
         return array_key_exists($id, $this->registered);
@@ -104,10 +109,5 @@ final class Container implements ContainerInterface
         throw new EntryNotFound(
             sprintf('The requested alias "%s" was not found.', $alias)
         );
-    }
-
-    public function has(string $id): bool
-    {
-        return array_key_exists($id, $this->registered);
     }
 }
