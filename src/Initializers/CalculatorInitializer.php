@@ -2,14 +2,15 @@
 
 declare(strict_types=1);
 
-namespace CalculatorViaContainer;
+namespace CalculatorViaContainer\Initializers;
 
+use CalculatorViaContainer\Container;
 use CalculatorViaContainer\Providers\Provider;
 use ReflectionClass;
 
-final class Initializer
+final class CalculatorInitializer implements Initializer
 {
-    private const PROVIDERS_NAMESPACE = __NAMESPACE__ . '\\Providers\\';
+    private const PROVIDERS_NAMESPACE = 'CalculatorViaContainer\\Providers\\';
 
     private Container $container;
 

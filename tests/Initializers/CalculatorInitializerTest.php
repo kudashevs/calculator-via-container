@@ -1,19 +1,19 @@
 <?php
 
-namespace CalculatorViaContainer\Tests;
+namespace CalculatorViaContainer\Tests\Initializers;
 
 use CalculatorViaContainer\Container;
-use CalculatorViaContainer\Initializer;
+use CalculatorViaContainer\Initializers\CalculatorInitializer;
 use CalculatorViaContainer\Operations\Addition;
 use PHPUnit\Framework\TestCase;
 
-class InitializerTest extends TestCase
+class CalculatorInitializerTest extends TestCase
 {
     /** @test */
     public function it_can_initialize_a_container()
     {
         $container = Container::getInstance();
-        $initializer = new Initializer();
+        $initializer = new CalculatorInitializer();
         $initializer->init($container);
 
         $addition = $container->get('addition');
