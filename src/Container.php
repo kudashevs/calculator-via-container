@@ -79,7 +79,7 @@ final class Container implements ContainerInterface
 
     public function has(string $id): bool
     {
-        return array_key_exists($id, $this->registered);
+        return $this->isRegistered($id) || $this->isAlias($id);
     }
 
     private function isRegistered(string $id): bool
