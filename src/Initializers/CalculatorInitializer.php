@@ -89,10 +89,10 @@ final class CalculatorInitializer implements Initializer
         return (new ReflectionClass($class))->isAbstract();
     }
 
-    private function registerProviders()
+    private function registerProviders(): void
     {
-        foreach ($this->providers as $provider) {
+        array_map(static function (Provider $provider) {
             $provider->register();
-        }
+        }, $this->providers);
     }
 }
