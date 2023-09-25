@@ -1,6 +1,6 @@
 # Calculator Via Container
 
-This is a case study that aims to show one of the possible ways of using a dependency injection container in PHP language.
+This is a case study that aims to show one of the possible ways of using a DI Container in PHP language.
 
 
 ## How it works
