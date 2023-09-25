@@ -9,7 +9,7 @@ use CalculatorViaContainer\Exceptions\InvalidOperationArgument;
 interface Validator
 {
     /**
-     * @param ...$arguments
+     * @param int|float ...$arguments
      *
      * @throws InvalidOperationArgument
      */
