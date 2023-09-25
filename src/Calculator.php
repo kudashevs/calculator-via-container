@@ -11,6 +11,18 @@ use CalculatorViaContainer\Operations\Operation;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
 
+/**
+ * @method int|float add(int|float ...$numbers)
+ * @method int|float addition(int|float ...$numbers)
+ * @method int|float sub(int|float ...$numbers)
+ * @method int|float subtraction(int|float ...$numbers)
+ * @method int|float mult(int|float ...$numbers)
+ * @method int|float multiply(int|float ...$numbers)
+ * @method int|float multiplication(int|float ...$numbers)
+ * @method int|float div(int|float ...$numbers)
+ * @method int|float divide(int|float ...$numbers)
+ * @method int|float division(int|float ...$numbers)
+ */
 class Calculator
 {
     protected Container $container;
