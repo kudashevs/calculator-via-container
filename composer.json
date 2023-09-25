@@ -1,7 +1,8 @@
 {
-    "name": "kudashevs/calculator-via-locator",
-    "description": "A simple calculator app that implements math operations via a container.",
-    "keywords": ["php", "study", "case study", "calculator", "closure"],
+    "name": "kudashevs/calculator-via-container",
+    "type": "case-study",
+    "description": "A simple calculator app that implements math operations via a DI container.",
+    "keywords": ["php", "study", "case study", "calculator", "container", "di container"],
     "license": "MIT",
     "authors": [
         {
