@@ -24,12 +24,15 @@ class AdditionProvider extends Provider
             return new DefaultValidator();
         });
 
-        $this->registerAliases();
+        $this->registerAliases(self::ALIASES);
     }
 
-    protected function registerAliases(): void
+    /**
+     * @param string[] $aliases
+     */
+    protected function registerAliases(array $aliases): void
     {
-        foreach (self::ALIASES as $alias) {
+        foreach ($aliases as $alias) {
             $this->container->alias($alias, Addition::class);
         }
     }
