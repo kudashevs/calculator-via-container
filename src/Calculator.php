@@ -24,12 +24,20 @@ class Calculator
     public function __call(string $name, array $arguments)
     {
         if ($this->container->has($name)) {
-            $operation = $this->container->get($name);
-            return $operation->calculate(...$arguments);
+            return $this->retrieveOperation($name)
+                ->calculate(...$arguments);
         }
 
         throw new \BadMethodCallException(
             sprintf('Method %s was not found. Check the method name.', $name)
         );
+    }
+
+    /**
+     * @throws EntryNotFound|ContainerExceptionInterface
+     */
+    private function retrieveOperation(string $name): Operation
+    {
+        return $this->container->get($name);
     }
 }
