@@ -17,3 +17,8 @@ $calculator = new Calculator();
 echo $calculator->addition(1, 2); // results in 3
 ```
 for more usage examples, please see the [examples](examples/) folder.
+
+
+## License
+
+The MIT License (MIT). Please see the [License file](LICENSE.md) for more information.
