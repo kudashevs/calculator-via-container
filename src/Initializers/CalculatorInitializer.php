@@ -24,6 +24,9 @@ final class CalculatorInitializer implements Initializer
     {
     }
 
+    /**
+     * @inheritDoc
+     */
     public function init(Container $container): void
     {
         $this->initContainer($container);

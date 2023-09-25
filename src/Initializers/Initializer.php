@@ -9,7 +9,7 @@ use CalculatorViaContainer\Container;
 interface Initializer
 {
     /**
-     * Initialize container
+     * Initialize a container.
      *
      * @param Container $container
      */
