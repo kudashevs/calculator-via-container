@@ -11,6 +11,7 @@ use ReflectionClass;
 final class CalculatorInitializer implements Initializer
 {
     private const PROVIDERS_NAMESPACE = 'CalculatorViaContainer\\Providers\\';
+    private const PROVIDERS_DIRECTORY = __DIR__ . '/../Providers';
 
     private Container $container;
 
@@ -59,7 +60,7 @@ final class CalculatorInitializer implements Initializer
      */
     private function retrieveProviders(): array
     {
-        $files = scandir(__DIR__ . '/Providers');
+        $files = scandir(self::PROVIDERS_DIRECTORY);
 
         return array_reduce($files, function ($carry, $file) {
             [$name, $extension] = explode('.', $file);
