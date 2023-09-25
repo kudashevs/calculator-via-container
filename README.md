@@ -31,6 +31,16 @@ The validation of input arguments is defined in the [Validator](src/Validators/V
 keyword and the mandatory constructor injection, we force all the `Operation` implementations to use some validation.
 
 
+## Things to learn
+
+[//]: # (@todo don't forget to update the line numbers)
+Things that you can learn from this case study:
+- a PSR-11 compatible DI Container, how it works, and [how you can use it](src/Calculator.php#L48)
+- how to [use the singleton pattern](src/Container.php#L39) (one of the possible implementations)
+- how to [use recursion to resolve dependencies](src/Container.php#L102)
+- how to [use final to force the subclasses to use the predefined behavior](src/Operations/Operation.php#L31)
+
+
 ## License
 
 The MIT License (MIT). Please see the [License file](LICENSE.md) for more information.
