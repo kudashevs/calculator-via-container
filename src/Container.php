@@ -7,14 +7,16 @@ namespace CalculatorViaContainer;
 use CalculatorViaContainer\Exceptions\EntryAlreadyExists;
 use CalculatorViaContainer\Exceptions\EntryNotFound;
 use CalculatorViaContainer\Initializers\Initializer;
+use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\ContainerInterface;
+use Psr\Container\NotFoundExceptionInterface;
 
 final class Container implements ContainerInterface
 {
     private static ?Container $instance = null;
 
     /**
-     * @var callable[]
+     * @var array<string, callable>
      */
     private array $registered = [];
 
@@ -51,11 +53,25 @@ final class Container implements ContainerInterface
     {
     }
 
+    /**
+     * Add an identifier with creation information to the container.
+     *
+     * @param string $id
+     * @param callable $factory
+     */
     public function set(string $id, callable $factory): void
     {
         $this->registered[$id] = $factory;
     }
 
+    /**
+     * Add an alias to an identifier to the container.
+     *
+     * @param string $alias
+     * @param string $id
+     *
+     * @throws EntryAlreadyExists
+     */
     public function alias(string $alias, string $id): void
     {
         if (!$this->isRegistered($id)) {
@@ -73,6 +89,14 @@ final class Container implements ContainerInterface
         $this->aliases[$id][] = $alias;
     }
 
+    /**
+     * Get an identifier or an alias from the container.
+     *
+     * @param string $id
+     * @return mixed
+     *
+     * @throws EntryNotFound|NotFoundExceptionInterface|ContainerExceptionInterface
+     */
     public function get(string $id)
     {
         if ($this->isRegistered($id)) {
@@ -89,6 +113,12 @@ final class Container implements ContainerInterface
         );
     }
 
+    /**
+     * Determine whether an identifier or alias is registered.
+     *
+     * @param string $id
+     * @return bool
+     */
     public function has(string $id): bool
     {
         return $this->isRegistered($id) || $this->isAlias($id);
@@ -110,6 +140,9 @@ final class Container implements ContainerInterface
         return false;
     }
 
+    /**
+     * @throws EntryNotFound
+     */
     private function getRegisteredByAlias(string $alias)
     {
         foreach (array_keys($this->aliases) as $key) {
