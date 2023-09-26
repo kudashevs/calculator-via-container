@@ -22,10 +22,9 @@ for more usage examples, please see the [examples](examples/) folder.
 
 By default, the package provides four classes that correspond to the basic math operations (addition, subtraction,
 multiplication, division). Each class extends an `Operation` class. The `Operation` class is an abstract class that
-obligates its subclasses to implement the `performCalculation` method. It also provides a default implementation for
-a `calculate` method and the constructor (every subclass must inject a `Validator` instance during the instantiation). 
-The `Division` class uses a `DivisionValidator` with an extended argument validation. For more information see the
-[DivisionProvider](src/Providers/DivisionProvider.php) file.
+obliges its subclasses to implement the `performCalculation` method. It also provides a default implementation for a
+`calculate` method and the constructor (each subclass must inject a `Validator` instance). The `Division` class uses
+a `DivisionValidator` with an extended argument validation. For more information see the [DivisionProvider](src/Providers/DivisionProvider.php) file.
 
 The validation of input arguments is defined in the [Validator](src/Validators/Validator.php) interface. By using the `final`
 keyword and the mandatory constructor injection, we force all the `Operation` implementations to use some validation.
