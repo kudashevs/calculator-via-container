@@ -16,7 +16,7 @@ final class CalculatorInitializer implements Initializer
     private Container $container;
 
     /**
-     * @var Provider[]
+     * @var array<string, Provider>
      */
     private array $providers = [];
 
@@ -50,7 +50,7 @@ final class CalculatorInitializer implements Initializer
     }
 
     /**
-     * @return array<string>
+     * @return array<array-key, string>
      */
     private function retrieveProviders(): array
     {
@@ -72,6 +72,7 @@ final class CalculatorInitializer implements Initializer
         $className = self::PROVIDERS_NAMESPACE . $name;
 
         if ($this->isBuildable($className)) {
+            /** @var class-string<Provider> $className */
             $this->providers[$name] = new $className($this->container);
         }
     }
