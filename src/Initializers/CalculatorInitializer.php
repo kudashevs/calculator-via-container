@@ -67,12 +67,12 @@ final class CalculatorInitializer implements Initializer
         }, []);
     }
 
-    private function initProvider(string $provider): void
+    private function initProvider(string $name): void
     {
-        $className = self::PROVIDERS_NAMESPACE . $provider;
+        $className = self::PROVIDERS_NAMESPACE . $name;
 
         if ($this->isBuildable($className)) {
-            $this->providers[$provider] = new $className($this->container);
+            $this->providers[$name] = new $className($this->container);
         }
     }
 
