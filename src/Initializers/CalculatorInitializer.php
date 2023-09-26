@@ -42,10 +42,10 @@ final class CalculatorInitializer implements Initializer
 
     private function initProviders(): void
     {
-        $providers = $this->retrieveProviders();
+        $providerNames = $this->retrieveProviders();
 
-        foreach ($providers as $provider) {
-            $this->initProvider($provider);
+        foreach ($providerNames as $providerName) {
+            $this->initProvider($providerName);
         }
     }
 
