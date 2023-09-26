@@ -35,7 +35,7 @@ final class CalculatorInitializer implements Initializer
         $this->registerProviders();
     }
 
-    private function initContainer(Container $container)
+    private function initContainer(Container $container): void
     {
         $this->container = $container;
     }
@@ -76,7 +76,7 @@ final class CalculatorInitializer implements Initializer
         }, []);
     }
 
-    private function isBuildable(string $class)
+    private function isBuildable(string $class): bool
     {
         return $this->isProvider($class)
             && !$this->isAbstactType($class);
