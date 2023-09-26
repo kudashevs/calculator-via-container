@@ -27,7 +27,7 @@ obliges its subclasses to implement the `performCalculation` method. It also pro
 uses a `DivisionValidator` with an extended argument validation. For more information see the [DivisionProvider](src/Providers/DivisionProvider.php) file.
 
 The validation of input arguments is defined in the [Validator](src/Validators/Validator.php) interface. By using the `final`
-keyword and the mandatory constructor injection, we force all the `Operation` implementations to use some validation.
+keyword and the constructor injection in the `Operation`, we force all its subclasses to use some type of validation.
 
 
 ## Things to learn
