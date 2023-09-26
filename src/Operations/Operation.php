@@ -17,7 +17,7 @@ abstract class Operation
     }
 
     /**
-     * @param ...$numbers
+     * @param int|float ...$numbers
      * @return int|float
      */
     abstract protected function performCalculation(...$numbers);
