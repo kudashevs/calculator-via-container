@@ -24,7 +24,7 @@ class DefaultValidator implements Validator
         }
     }
 
-    private function checkNumericArguments(array $arguments)
+    private function checkNumericArguments(array $arguments): void
     {
         foreach ($arguments as $argument) {
             if (!is_numeric($argument)) {
