@@ -31,7 +31,7 @@ final class CalculatorInitializer implements Initializer
     {
         $this->initContainer($container);
 
-        $this->buildProviders();
+        $this->initProviders();
         $this->registerProviders();
     }
 
@@ -40,12 +40,12 @@ final class CalculatorInitializer implements Initializer
         $this->container = $container;
     }
 
-    private function buildProviders(): void
+    private function initProviders(): void
     {
         $providers = $this->retrieveProviders();
 
         foreach ($providers as $provider) {
-            $this->buildProvider($provider);
+            $this->initProvider($provider);
         }
     }
 
@@ -67,7 +67,7 @@ final class CalculatorInitializer implements Initializer
         }, []);
     }
 
-    private function buildProvider(string $provider): void
+    private function initProvider(string $provider): void
     {
         $className = self::PROVIDERS_NAMESPACE . $provider;
 
