@@ -11,7 +11,7 @@ abstract class Operation
 {
     protected Validator $validator;
 
-    public function __construct(Validator $validator)
+    final public function __construct(Validator $validator)
     {
         $this->validator = $validator;
     }
