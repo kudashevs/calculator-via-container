@@ -49,15 +49,6 @@ final class CalculatorInitializer implements Initializer
         }
     }
 
-    private function buildProvider(string $provider): void
-    {
-        $className = self::PROVIDERS_NAMESPACE . $provider;
-
-        if ($this->isBuildable($className)) {
-            $this->providers[$provider] = new $className($this->container);
-        }
-    }
-
     /**
      * @return array<string>
      */
@@ -74,6 +65,15 @@ final class CalculatorInitializer implements Initializer
 
             return $carry;
         }, []);
+    }
+
+    private function buildProvider(string $provider): void
+    {
+        $className = self::PROVIDERS_NAMESPACE . $provider;
+
+        if ($this->isBuildable($className)) {
+            $this->providers[$provider] = new $className($this->container);
+        }
     }
 
     private function isBuildable(string $class): bool
