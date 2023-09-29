@@ -104,7 +104,7 @@ final class Container implements ContainerInterface
         }
 
         if ($this->isAlias($id)) {
-            $identifier = $this->getRegisteredByAlias($id);
+            $identifier = $this->getIdentifierByAlias($id);
             return $this->registered[$identifier]($this);
         }
 
@@ -143,7 +143,7 @@ final class Container implements ContainerInterface
     /**
      * @throws EntryNotFound
      */
-    private function getRegisteredByAlias(string $alias): string
+    private function getIdentifierByAlias(string $alias): string
     {
         foreach (array_keys($this->aliases) as $key) {
             if (in_array($alias, $this->aliases[$key], true)) {
