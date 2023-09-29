@@ -143,7 +143,7 @@ final class Container implements ContainerInterface
     /**
      * @throws EntryNotFound
      */
-    private function getRegisteredByAlias(string $alias)
+    private function getRegisteredByAlias(string $alias): string
     {
         foreach (array_keys($this->aliases) as $key) {
             if (in_array($alias, $this->aliases[$key], true)) {
