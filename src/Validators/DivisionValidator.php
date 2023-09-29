@@ -18,6 +18,9 @@ class DivisionValidator implements Validator
         $this->checkZeroArguments($arguments);
     }
 
+    /**
+     * @param array<int|float> $arguments
+     */
     private function checkEmptyArguments(array $arguments): void
     {
         if (count($arguments) === 0) {
@@ -25,6 +28,9 @@ class DivisionValidator implements Validator
         }
     }
 
+    /**
+     * @param array<int|float> $arguments
+     */
     private function checkNumericArguments(array $arguments): void
     {
         foreach ($arguments as $argument) {
@@ -34,6 +40,9 @@ class DivisionValidator implements Validator
         }
     }
 
+    /**
+     * @param array<int|float> $arguments
+     */
     private function checkZeroArguments(array $arguments): void
     {
         if (in_array(0, $arguments, false)) {
