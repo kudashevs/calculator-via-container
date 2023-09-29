@@ -21,7 +21,7 @@ final class Container implements ContainerInterface
     private array $registered = [];
 
     /**
-     * @var string[][]
+     * @var array<string, array <string>>
      */
     private array $aliases = [];
 
