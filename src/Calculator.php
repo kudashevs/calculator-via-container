@@ -40,7 +40,7 @@ class Calculator
 
     /**
      * @param string $name
-     * @param array $arguments
+     * @param array<int|float> $arguments
      * @return int|float
      *
      * @throws BadMethodCallException|NotFoundExceptionInterface|ContainerExceptionInterface
