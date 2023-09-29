@@ -119,7 +119,7 @@ final class CalculatorInitializer implements Initializer
 
     private function registerProviders(): void
     {
-        array_map(static function (Provider $provider) {
+        array_map(static function (Provider $provider): void {
             $provider->register();
         }, $this->providers);
     }
