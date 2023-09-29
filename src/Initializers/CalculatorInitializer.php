@@ -50,7 +50,7 @@ final class CalculatorInitializer implements Initializer
     }
 
     /**
-     * @return array<array-key, string>
+     * @return array<int, string>
      */
     private function retrieveProviders(): array
     {
@@ -69,14 +69,18 @@ final class CalculatorInitializer implements Initializer
 
     private function initProvider(string $name): void
     {
+        /** @var class-string<Provider> $className */
         $className = self::PROVIDERS_NAMESPACE . $name;
 
         if ($this->isBuildable($className)) {
-            /** @var class-string<Provider> $className */
             $this->providers[$name] = new $className($this->container);
         }
     }
 
+    /**
+     * @param class-string $class
+     * @return bool
+     */
     private function isBuildable(string $class): bool
     {
         return $this->isProvider($class)
@@ -88,6 +92,12 @@ final class CalculatorInitializer implements Initializer
         return is_a($class, Provider::class, true);
     }
 
+    /**
+     * @param class-string $class
+     * @return bool
+     *
+     * @throws \ReflectionException
+     */
     private function isAbstractType(string $class): bool
     {
         return (new ReflectionClass($class))->isAbstract();
