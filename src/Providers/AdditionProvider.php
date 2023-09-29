@@ -28,7 +28,7 @@ class AdditionProvider extends Provider
     }
 
     /**
-     * @param string[] $aliases
+     * @param array<string> $aliases
      */
     protected function registerAliases(array $aliases): void
     {
