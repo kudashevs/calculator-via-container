@@ -104,8 +104,8 @@ final class Container implements ContainerInterface
         }
 
         if ($this->isAlias($id)) {
-            $aliasId = $this->getRegisteredByAlias($id);
-            return $this->registered[$aliasId]($this);
+            $identifier = $this->getRegisteredByAlias($id);
+            return $this->registered[$identifier]($this);
         }
 
         throw new EntryNotFound(
