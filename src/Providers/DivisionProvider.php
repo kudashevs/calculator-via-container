@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace CalculatorViaContainer\Providers;
 
 use CalculatorViaContainer\Operations\Division;
-use CalculatorViaContainer\Validators\DefaultValidator;
+use CalculatorViaContainer\Validators\DivisionValidator;
 
 class DivisionProvider extends Provider
 {
@@ -18,11 +18,11 @@ class DivisionProvider extends Provider
     public function register(): void
     {
         $this->container->set(Division::class, function () {
-            return new Division($this->container->get(DefaultValidator::class));
+            return new Division($this->container->get(DivisionValidator::class));
         });
 
-        $this->container->set(DefaultValidator::class, function () {
-            return new DefaultValidator();
+        $this->container->set(DivisionValidator::class, function () {
+            return new DivisionValidator();
         });
 
         $this->registerAliases(self::ALIASES);

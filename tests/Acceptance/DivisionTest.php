@@ -4,8 +4,6 @@ namespace CalculatorViaContainer\Tests\Acceptance;
 
 use CalculatorViaContainer\Calculator;
 use CalculatorViaContainer\Exceptions\InvalidOperationArgument;
-use CalculatorViaContainer\Operations\Division;
-use CalculatorViaContainer\Validators\DivisionValidator;
 use PHPUnit\Framework\TestCase;
 
 class DivisionTest extends TestCase
@@ -25,9 +23,7 @@ class DivisionTest extends TestCase
         $this->expectException(InvalidOperationArgument::class);
         $this->expectExceptionMessage('divide by');
 
-        $validator = new DivisionValidator();
-        $division = new Division($validator);
-        $division->calculate(42, 2, 0);
+        $this->calculator->division(42, 2, 0);
     }
 
     /** @test */
@@ -36,9 +32,7 @@ class DivisionTest extends TestCase
         $this->expectException(InvalidOperationArgument::class);
         $this->expectExceptionMessage('divide by');
 
-        $validator = new DivisionValidator();
-        $division = new Division($validator);
-        $division->calculate(42, 2.0, 0.0);
+        $this->calculator->division(42, 2.0, 0.0);
     }
 
     /**
