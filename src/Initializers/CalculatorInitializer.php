@@ -83,8 +83,12 @@ final class CalculatorInitializer implements Initializer
      */
     private function isBuildable(string $class): bool
     {
-        return $this->isProvider($class)
-            && !$this->isAbstractType($class);
+        try {
+            return $this->isProvider($class)
+                && !$this->isAbstractType($class);
+        } catch (\ReflectionException $e) {
+            return false;
+        }
     }
 
     private function isProvider(string $class): bool
