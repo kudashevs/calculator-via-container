@@ -54,7 +54,7 @@ final class CalculatorInitializer implements Initializer
      */
     private function retrieveProviders(): array
     {
-        $files = scandir(self::PROVIDERS_DIRECTORY) ?: [''];
+        $files = $this->retrieveProviderFiles();
 
         return array_reduce($files, static function ($carry, $file) {
             [$name, $extension] = explode('.', $file);
@@ -65,6 +65,16 @@ final class CalculatorInitializer implements Initializer
 
             return $carry;
         }, []);
+    }
+
+    /**
+     * @return array<string>
+     */
+    private function retrieveProviderFiles(): array
+    {
+        $files = scandir(self::PROVIDERS_DIRECTORY);
+
+        return ($files !== false) ? $files : [];
     }
 
     private function initProvider(string $name): void
