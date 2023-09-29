@@ -56,7 +56,7 @@ final class CalculatorInitializer implements Initializer
     {
         $files = scandir(self::PROVIDERS_DIRECTORY) ?: [''];
 
-        return array_reduce($files, function ($carry, $file) {
+        return array_reduce($files, static function ($carry, $file) {
             [$name, $extension] = explode('.', $file);
 
             if ($name !== '' && $extension === 'php') {
