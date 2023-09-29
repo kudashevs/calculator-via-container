@@ -132,7 +132,7 @@ final class Container implements ContainerInterface
     private function isAlias(string $alias): bool
     {
         foreach (array_keys($this->aliases) as $key) {
-            if (in_array($alias, $this->aliases[$key])) {
+            if (in_array($alias, $this->aliases[$key], true)) {
                 return true;
             }
         }
@@ -146,7 +146,7 @@ final class Container implements ContainerInterface
     private function getRegisteredByAlias(string $alias)
     {
         foreach (array_keys($this->aliases) as $key) {
-            if (in_array($alias, $this->aliases[$key])) {
+            if (in_array($alias, $this->aliases[$key], true)) {
                 return $key;
             }
         }
